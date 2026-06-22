@@ -15,3 +15,4 @@ def test_loader() -> None:
     )
 
     assert provider is not None
+    assert registry is not None

@@ -24,3 +24,4 @@ tenacity
 
 pytesseract
 pillow
+google-generativeai
