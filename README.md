@@ -13,7 +13,6 @@ Hybrid Retrieval • Knowledge Graphs • Agentic Search • Local LLMs • Ente
 [![Status](https://img.shields.io/badge/Status-Active%20Development-success.svg)]
 
 </div>
-
 ---
 
 ## 📖 Overview
