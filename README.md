@@ -301,9 +301,7 @@ ruff check .
 
 ### In Progress
 
-- Model registry
-- Dynamic provider loading
-
+- Vector Database Layer
 ### Upcoming
 
 - OpenAI integration
