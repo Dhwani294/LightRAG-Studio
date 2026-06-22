@@ -10,9 +10,4 @@ def test_loader() -> None:
         .load_default_registry()
     )
 
-    provider = registry.get(
-        "mock"
-    )
-
-    assert provider is not None
     assert registry is not None

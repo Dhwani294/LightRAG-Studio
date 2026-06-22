@@ -25,3 +25,4 @@ tenacity
 pytesseract
 pillow
 google-generativeai
+anthropic

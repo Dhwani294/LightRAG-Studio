@@ -1,6 +1,9 @@
 from core.config.settings import (
     settings,
 )
+from services.llm.providers.anthropic_provider import (
+    AnthropicProvider,
+)
 from services.llm.providers.gemini_provider import (
     GeminiProvider,
 )
@@ -47,6 +50,16 @@ class ProviderLoader:
                 GeminiProvider(
                     api_key=settings.gemini_api_key,
                     model=settings.gemini_model,
+                ),
+            )
+
+        if settings.anthropic_api_key:
+
+            registry.register(
+                "anthropic",
+                AnthropicProvider(
+                    api_key=settings.anthropic_api_key,
+                    model=settings.anthropic_model,
                 ),
             )
 

@@ -22,6 +22,10 @@ class Settings(BaseSettings):
     gemini_api_key: str = ""
     gemini_model: str = "gemini-2.5-flash"
 
+    # Anthropic
+    anthropic_api_key: str = ""
+    anthropic_model: str = "claude-3-5-sonnet-latest"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",

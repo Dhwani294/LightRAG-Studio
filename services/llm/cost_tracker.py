@@ -9,6 +9,10 @@ class CostTracker:
             "input": 0.30,
             "output": 2.50,
         },
+        "claude-3-5-sonnet-latest": {
+            "input": 3.00,
+            "output": 15.00,
+        },
     }
 
     @classmethod
