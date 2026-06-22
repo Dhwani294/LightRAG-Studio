@@ -13,6 +13,10 @@ class CostTracker:
             "input": 3.00,
             "output": 15.00,
         },
+        "llama3": {
+            "input": 0.0,
+            "output": 0.0,
+        },
     }
 
     @classmethod

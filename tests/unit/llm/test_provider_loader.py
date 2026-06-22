@@ -11,3 +11,9 @@ def test_loader() -> None:
     )
 
     assert registry is not None
+
+    ollama = registry.get(
+        "ollama"
+    )
+
+    assert ollama is not None

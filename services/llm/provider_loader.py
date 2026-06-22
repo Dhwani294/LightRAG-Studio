@@ -10,6 +10,9 @@ from services.llm.providers.gemini_provider import (
 from services.llm.providers.mock_provider import (
     MockProvider,
 )
+from services.llm.providers.ollama_provider import (
+    OllamaProvider,
+)
 from services.llm.providers.openai_provider import (
     OpenAIProvider,
 )
@@ -62,5 +65,13 @@ class ProviderLoader:
                     model=settings.anthropic_model,
                 ),
             )
+
+        registry.register(
+            "ollama",
+            OllamaProvider(
+                host=settings.ollama_host,
+                model=settings.ollama_model,
+            ),
+        )
 
         return registry

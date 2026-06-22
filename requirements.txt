@@ -26,3 +26,4 @@ pytesseract
 pillow
 google-generativeai
 anthropic
+httpx

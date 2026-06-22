@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     anthropic_api_key: str = ""
     anthropic_model: str = "claude-3-5-sonnet-latest"
 
+    # Ollama
+    ollama_host: str = "http://localhost:11434"
+    ollama_model: str = "llama3"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",
