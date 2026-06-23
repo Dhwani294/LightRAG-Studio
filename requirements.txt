@@ -27,3 +27,6 @@ pillow
 google-generativeai
 anthropic
 httpx
+faiss-cpu
+numpy
+chromadb

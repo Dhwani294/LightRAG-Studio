@@ -1,0 +1,4 @@
+class EmbeddingError(
+    Exception,
+):
+    pass

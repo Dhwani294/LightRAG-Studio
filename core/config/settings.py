@@ -30,6 +30,38 @@ class Settings(BaseSettings):
     ollama_host: str = "http://localhost:11434"
     ollama_model: str = "llama3"
 
+    # Embeddings
+    embedding_provider: str = "ollama"
+
+    openai_embedding_model: str = (
+        "text-embedding-3-small"
+    )
+
+    ollama_embedding_model: str = (
+        "nomic-embed-text"
+    )
+
+    # Vector Store
+    vector_store: str = "chroma"
+
+    # FAISS
+    faiss_index_path: str = (
+        "data/faiss/index.bin"
+    )
+
+    faiss_metadata_path: str = (
+        "data/faiss/metadata.json"
+    )
+
+    # Chroma
+    chroma_path: str = (
+        "data/chroma"
+    )
+
+    chroma_collection: str = (
+        "documents"
+    )
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",
