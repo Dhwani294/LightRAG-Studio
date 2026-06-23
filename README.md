@@ -6,6 +6,7 @@
 
 Hybrid Retrieval • Knowledge Graphs • Agentic Search • Local LLMs • Enterprise Observability
 
+
 [![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)]
 [![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green.svg)]
 [![LightRAG](https://img.shields.io/badge/LightRAG-Core-orange.svg)]
