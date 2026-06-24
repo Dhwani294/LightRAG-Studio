@@ -1,47 +1,60 @@
-from core.config.settings import (
-    settings,
-)
-
 from repositories.vector.base import (
     VectorRepository,
 )
+
+from repositories.vector.in_memory_vector_repository import (
+    InMemoryVectorRepository,
+)
+
+
 from repositories.vector.chroma_repository import (
     ChromaRepository,
 )
+
 from repositories.vector.faiss_repository import (
     FaissRepository,
 )
+
 from repositories.vector.qdrant_repository import (
     QdrantRepository,
 )
 
+from core.config.settings import (
+    settings,
+)
+
+
 class VectorRepositoryFactory:
 
     @staticmethod
-    def create(
-        dimension: int,
-    ) -> VectorRepository:
+    def create() -> VectorRepository:
 
-        if (
-            settings.vector_store
-            == "faiss"
-        ):
+        backend = (
+            settings.vector_backend
+            .lower()
+        )
+
+        dimension = (
+            settings.embedding_dimension
+        )
+
+        if backend == "memory":
+
+            return (
+                InMemoryVectorRepository()
+            )
+
+        if backend == "faiss":
 
             return (
                 FaissRepository(
-                    dimension=
-                    dimension,
-                    index_path=
-                    settings.faiss_index_path,
-                    metadata_path=
-                    settings.faiss_metadata_path,
+                    dimension=dimension,
+                    index_path="data/faiss/index.bin",
+                    metadata_path="data/faiss/metadata.json",
                 )
             )
 
-        if (
-            settings.vector_store
-            == "chroma"
-        ):
+        if backend == "chroma":
 
             return (
                 ChromaRepository(
@@ -52,17 +65,13 @@ class VectorRepositoryFactory:
                 )
             )
 
-        if (
-            settings.vector_store
-            == "qdrant"
-        ):
+        if backend == "qdrant":
 
             return (
                 QdrantRepository(
                     collection_name=
                     settings.qdrant_collection,
-                    dimension=
-                    dimension,
+                    dimension=dimension,
                     host=
                     settings.qdrant_host,
                     port=
@@ -71,8 +80,6 @@ class VectorRepositoryFactory:
             )
 
         raise ValueError(
-            (
-                "Unsupported "
-                "vector store"
-            )
+            f"Unsupported vector backend: "
+            f"{backend}"
         )

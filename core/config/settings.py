@@ -41,6 +41,11 @@ class Settings(BaseSettings):
         "nomic-embed-text"
     )
 
+    embedding_dimension: int = 384
+
+    # Vector Backend
+    vector_backend: str = "memory"
+
     # Vector Store
     vector_store: str = "chroma"
 
@@ -55,11 +60,11 @@ class Settings(BaseSettings):
 
     # Chroma
     chroma_path: str = (
-        "data/chroma"
+        "./data/chroma"
     )
 
     chroma_collection: str = (
-        "documents"
+        "lightrag"
     )
 
     # Qdrant
@@ -68,7 +73,7 @@ class Settings(BaseSettings):
     qdrant_port: int = 6333
 
     qdrant_collection: str = (
-        "documents"
+        "lightrag"
     )
 
     model_config = SettingsConfigDict(
