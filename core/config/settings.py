@@ -62,6 +62,15 @@ class Settings(BaseSettings):
         "documents"
     )
 
+    # Qdrant
+    qdrant_host: str = "localhost"
+
+    qdrant_port: int = 6333
+
+    qdrant_collection: str = (
+        "documents"
+    )
+
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore",

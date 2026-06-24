@@ -11,7 +11,9 @@ from repositories.vector.chroma_repository import (
 from repositories.vector.faiss_repository import (
     FaissRepository,
 )
-
+from repositories.vector.qdrant_repository import (
+    QdrantRepository,
+)
 
 class VectorRepositoryFactory:
 
@@ -47,6 +49,24 @@ class VectorRepositoryFactory:
                     settings.chroma_path,
                     collection_name=
                     settings.chroma_collection,
+                )
+            )
+
+        if (
+            settings.vector_store
+            == "qdrant"
+        ):
+
+            return (
+                QdrantRepository(
+                    collection_name=
+                    settings.qdrant_collection,
+                    dimension=
+                    dimension,
+                    host=
+                    settings.qdrant_host,
+                    port=
+                    settings.qdrant_port,
                 )
             )
 

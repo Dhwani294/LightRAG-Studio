@@ -1,4 +1,5 @@
-from typing import Any, cast
+from typing import Any
+from typing import cast
 
 from chromadb import PersistentClient
 
@@ -79,39 +80,53 @@ class ChromaRepository(
         VectorSearchResult
     ]:
 
-        results = (
+        results = cast(
+            Any,
             self.collection.query(
                 query_embeddings=cast(
                     Any,
-                    [embedding],
+                    [embedding]
                 ),
                 n_results=top_k,
-            )
+            ),
         )
 
         output: list[
             VectorSearchResult
         ] = []
 
-        ids = results["ids"],
-        
+        ids = cast(
+            Any,
+            results.get("ids")
+        )
 
         documents = cast(
-            list[list[str]],
-            results["documents"],
+            Any,
+            results.get(
+                "documents"
+            )
         )
 
         metadatas = cast(
             Any,
-            results["metadatas"],
+            results.get(
+                "metadatas"
+            )
         )
 
         distances = cast(
-            list[list[float]],
-            results["distances"],
+            Any,
+            results.get(
+                "distances"
+            )
         )
 
-        if not ids:
+        if (
+            not ids
+            or not documents
+            or not metadatas
+            or not distances
+        ):
             return []
 
         for (
@@ -129,16 +144,17 @@ class ChromaRepository(
 
             output.append(
                 VectorSearchResult(
-                    id=doc_id,
+                    id=str(doc_id),
                     score=float(
                         1.0
-                        /
-                        (
+                        / (
                             1.0
                             + distance
                         )
                     ),
-                    content=document,
+                    content=str(
+                        document
+                    ),
                     metadata=dict(
                         metadata
                     ),
@@ -152,7 +168,8 @@ class ChromaRepository(
         document_id: str,
     ) -> VectorDocument | None:
 
-        result = (
+        result = cast(
+            Any,
             self.collection.get(
                 ids=[
                     document_id
@@ -165,30 +182,40 @@ class ChromaRepository(
             )
         )
 
-        ids = result["ids"],
-        
+        ids = cast(
+            Any,
+            result.get("ids")
+        )
 
         if not ids:
             return None
 
         documents = cast(
-            list[str],
-            result["documents"],
+            Any,
+            result.get(
+                "documents"
+            )
         )
 
         embeddings = cast(
             Any,
-            result["embeddings"],
+            result.get(
+                "embeddings"
+            )
         )
 
         metadatas = cast(
             Any,
-            result["metadatas"],
+            result.get(
+                "metadatas"
+            )
         )
 
         return VectorDocument(
-            id=ids[0],
-            content=documents[0],
+            id=str(ids[0]),
+            content=str(
+                documents[0]
+            ),
             embedding=list(
                 embeddings[0]
             ),
