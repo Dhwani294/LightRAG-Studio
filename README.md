@@ -15,7 +15,6 @@ Hybrid Retrieval • Knowledge Graphs • Agentic Search • Local LLMs • Ente
 
 </div>
 ---
-
 ## 📖 Overview
 
 LightRAG Studio Enterprise is a production-grade document intelligence platform designed to transform unstructured documents into searchable knowledge.
